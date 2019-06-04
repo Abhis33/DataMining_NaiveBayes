@@ -1,0 +1,45 @@
+Data Size - 32561 x 15
+
+Only 3 columns contain missing values -
+1. workclass - 1836 (6%)
+2. occupation - 1843 (6%)
+3. native-country - 583 (2%)
+
+Total rows containing ? - missing values 2399 (7.4%)
+
+Total No. of <=50k is 24720
+Total No. of >50k is 7841
+
+Minimum accuracy (Zero R) or by random answer = 75.919
+
+Bins for Age of size 5 -
+1. For <=50k Max no. of age is between 20-25 - 3889 - 11.94%
+2. For >50k Max no. of age is between 40-45 - 1391 - 4.27%
+
+Bins for Age of size 10 -
+1. For <=50k Max no. of age is between 20-30 - 7545 - 23.17%
+2. For >50k Max no. of age is between 40-50 - 2662 - 8.18%
+
+Bins for Hours-per-week of size 6 -
+1. For <=50k Max no. of age is between 30-36 - 12726 - 39.08% of total
+2. For >50k Max no. of age is between 30-36 - 3410 - 10.47% of total
+
+Most of the <=50k people are in between 20-25 and the count decreases exponentially.
+Most of the >50k peple are in between 40-45 and the count decreases but not exponentially.
+
+Workclass -
+1. For <=50k 54.46% are in private.
+2. For > 50k 15.24% are in private.
+
+Native-country -
+1. For <=50k 67.56% are from US.
+2. For > 50k 22.02% are from US.
+
+#Bin sizes which are good - 
+Capital Gain - 18 (5777)
+Capital-Loss - 16 (276)
+FinalWeight - 67 (22,501)
+Age - 15 (5)
+Hours-per-week - 17 (6)
+
+#Can remove the attribute 'class number' does not change accuracy.

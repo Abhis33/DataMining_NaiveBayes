@@ -1,0 +1,15 @@
+On the complete training set we've used k-fold cross validation -
+The following strategies were used -
+-> Accuracy
+-> Confusion matrix
+-> Precision and recall
+-> F1 Measure
+
+The results were (Average of k-fold cross validation where k = 10) -
+-> Accuracy - 82.125
+-> Precision and recall - 0.772 & 0.595
+-> F1 Measure - 0.336
+
+The accuracy can be increased by -
+-> Increasing the training Dataset so each of the sub-classes can have enough number of samples. 
+-> Balancing instances of both '<=50K' and '>50K'.

@@ -1,0 +1,50 @@
+Description of important steps taken while creating this program -
+###################################################################
+Un-coded Preprocessing-
+-> Some pre-processing was done manually which was taking the attribute names from [dot]names file and creating [dot]csv file comprising of data from data file and column names from names file.
+###################################################################
+This visualization is explained in much more details in the file 'Notes & Obs.txt'
+Visualization using Tableau -
+-> Only 3 columns/attributes out of total contain missing values -
+1. workclass - 1836 (6%)
+2. occupation - 1843 (6%)
+3. native-country - 583 (2%)
+-> Total rows containing ? - missing values 2399 (7.4%)
+
+-> Dataset is imbalanced -
+1. Total No. of <=50k is 24720
+2. Total No. of >50k is 7841
+_> Minimum accuracy (Zero R) or by biased model will be = 75.919%
+
+Age when compared against Output label very interesting results are seen-
+-> Most of the people earning less than 50K are under age of 20-25 years (11.94%) and the graph forms an exponential curve as age increases the no. of people under 50K decreases exponentially.
+-> Most of the people earning greater than 50K are under age of 40-45 years (4.27%) and the graph forms like a bell curve and does not decrease as exponetially as 1.
+
+Suitable number of bins for equi-width -[Attribute - Number of bins - size of 1 bin]
+->Capital Gain - 18 (5777), Capital-Loss - 16 (276), FinalWeight - 67 (22,501), Age - 15 (5), Hours-per-week - 17 (6)
+###################################################################
+Pre-processing - Missing Values - 2 Methods -
+-> Dropping rows - After visualization in Tableau we found out that the missing values are about 7.4% - This is acceptable number of rows that can be dropped - This function is coded but we are not using it, since accuracy decreases, instead we are using the second method.
+-> Max Frequency - i.e Replacing the missing values with mode of the entire column.
+
+Pre-processing - Discretization - 2 Methods -
+-> Equi-width - Defined the number of bins that each continuous column in a dictionary and using it to create interval ranges.
+-> Gaussian Distribution - Function has been coded but using equi-width instead of Gaussian distribution because the accuracy was not seen to be much different
+###################################################################
+Training Naive bayes -
+-> 2 variables are created for storing conditional probability of attributes given less than 50K and greater than 50K.
+-> Both variables are list of dictionary where list entries have index same to column indexes(eg - age - 0, etc) and the dictionary contain distinct sub-classes of a column (eg - Federal, Private, etc - Workclass) as keys and conditional probabilities as values.
+###################################################################
+Testing Naive Bayes -
+-> The function takes the 2 models (list of dictionary) created in training phase and test set and assumes that there are no missing values but the test set needs to be discritized.
+-> The function replaces all the entries in a row with their appropriate conditional probability (for <= 50K and differently for >50K) and finally multiplies all the entries in a row and then with the independent probability of less than 50K and greater than 50K and then divides both the probabilities and returns the final value.
+###################################################################
+K-Fold Cross Validation -
+-> K-Fold cross validation is used for testing where k can be any integer number. It divides the given dataframe into (k-1/k) fraction with replacement for training and uses (1/k) fraction for testing.
+-> The returned values by testing is a ratio which if greater than 1 is less than 50K as prediction and less than 1 is greater than 50K as prediction.
+-> Runs k times, calculates accuracy, confusion matrix, precision and recall, F1 Measure and saves all k model in 2 different lists.
+###################################################################
+User given test set -
+-> For test set given by user it is assumed that there are no missing values but needs discretization.
+-> Runs n times depending on number of models that are present in the saved model list. Predicts and depending on maximum votes assigns the label.
+###################################################################
